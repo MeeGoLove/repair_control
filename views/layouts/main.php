@@ -38,11 +38,24 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
     ]);
     $menuItems = [
         ['label' => 'Главная', 'url' => ['/site/index']],
+        ['label' => 'Ремонты', 'url' => ['/repairs/index']],
+        ['label' => 'Выдачи', 'url' => ['/transfers/index']],
+        ['label' => 'Отчеты', 'url' => ['/reports/index']],
+        ['label' => 'Справочники','items' => [
+                ['label' => 'Вся техника (raw)', 'url' => ['/raw-technics/index']],
+                ['label' => 'Техника на выдачу (расходники)', 'url' => ['/site/index2']],
+                ['label' => 'Техника на выдачу', 'url' => ['/site/index2']],
+                ['label' => 'Виды техники', 'url' => ['/site/index2']],
+                ['label' => 'Отделения', 'url' => ['/units/index']],
+                ['label' => 'МОЛ', 'url' => ['/mol/index']],
+
+        ]]
+
+
     ];
 
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Зарегистрироваться', 'url' => ['/site/signup']];
-        $menuItems[] = ['label' => 'Войти', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
