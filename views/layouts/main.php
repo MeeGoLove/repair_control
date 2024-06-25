@@ -49,7 +49,11 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
                 ['label' => 'Отделения', 'url' => ['/units/index']],
                 ['label' => 'МОЛ', 'url' => ['/mol/index']],
 
-        ]]
+        ]],
+        ['label' => 'Импортеры','items' => [
+            ['label' => 'Вся техника (raw)', 'url' => ['/import/raw']],
+            ['label' => '.....', 'url' => ['/import/index']],
+            ]],
 
 
     ];

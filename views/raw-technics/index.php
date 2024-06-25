@@ -1,11 +1,12 @@
 <?php
 
 use app\models\RawTechnics;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\Pjax;
+
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
@@ -19,7 +20,9 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Raw Technics', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-
+    <p>
+        <?= Html::a('Импортировать данные с файла Excel', ['import/raw'], ['class' => 'btn btn-success']) ?>
+    </p>
     <?php Pjax::begin(); ?>
 
     <?= GridView::widget([
@@ -40,11 +43,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, RawTechnics $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                }
             ],
         ],
     ]); ?>
 
     <?php Pjax::end(); ?>
+
 
 </div>
