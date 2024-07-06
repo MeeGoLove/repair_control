@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Units;
+use app\models\Technics;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,15 +9,15 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Отделения';
+$this->title = 'Техника на выдачу';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="units-index">
+<div class="technics-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
@@ -27,11 +27,18 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
+            'date_accounting',
+            'invent_card',
+            'inventory_number',
+            'serial_number',
+            'count',
+            'alternative_names',
+            'date_add',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Units $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Technics $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],

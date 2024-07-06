@@ -2,18 +2,16 @@
 
 namespace app\controllers;
 
-use app\models\RawTechnics;
+use app\models\Technics;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\helpers\Json;
 use yii\filters\VerbFilter;
-use yii\db\Query;
 
 /**
- * RawTechnicsController implements the CRUD actions for RawTechnics model.
+ * TechnicsController implements the CRUD actions for Technics model.
  */
-class RawTechnicsController extends Controller
+class TechnicsController extends Controller
 {
     /**
      * @inheritDoc
@@ -34,14 +32,14 @@ class RawTechnicsController extends Controller
     }
 
     /**
-     * Lists all RawTechnics models.
+     * Lists all Technics models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => RawTechnics::find(),
+            'query' => Technics::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
@@ -60,7 +58,7 @@ class RawTechnicsController extends Controller
     }
 
     /**
-     * Displays a single RawTechnics model.
+     * Displays a single Technics model.
      * @param int $id ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
@@ -73,13 +71,13 @@ class RawTechnicsController extends Controller
     }
 
     /**
-     * Creates a new RawTechnics model.
+     * Creates a new Technics model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new RawTechnics();
+        $model = new Technics();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -95,7 +93,7 @@ class RawTechnicsController extends Controller
     }
 
     /**
-     * Updates an existing RawTechnics model.
+     * Updates an existing Technics model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param int $id ID
      * @return string|\yii\web\Response
@@ -115,7 +113,7 @@ class RawTechnicsController extends Controller
     }
 
     /**
-     * Deletes an existing RawTechnics model.
+     * Deletes an existing Technics model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param int $id ID
      * @return \yii\web\Response
@@ -129,56 +127,18 @@ class RawTechnicsController extends Controller
     }
 
     /**
-     * Finds the RawTechnics model based on its primary key value.
+     * Finds the Technics model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param int $id ID
-     * @return RawTechnics the loaded model
+     * @return Technics the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = RawTechnics::findOne(['id' => $id])) !== null) {
+        if (($model = Technics::findOne(['id' => $id])) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * Your controller action to fetch the list
-     */
-    public function actionInventoryNumberList($q = null) {
-        $query = new Query;
-
-        $query->select('name')
-            ->from('raw_technics')
-            ->where('inventory_number LIKE "%' . $q .'%"')
-            ->orderBy('name');
-        $command = $query->createCommand();
-        $data = $command->queryAll();
-        $out = [];
-        foreach ($data as $d) {
-            $out[] = ['value' => $d['name']];
-        }
-        echo Json::encode($out);
-    }
-
-    /**
-     * Your controller action to fetch the list
-     */
-    public function actionSerialNumberList($q = null) {
-        $query = new Query;
-
-        $query->select('name')
-            ->from('raw_technics')
-            ->where('serial_number LIKE "%' . $q .'%"')
-            ->orderBy('name');
-        $command = $query->createCommand();
-        $data = $command->queryAll();
-        $out = [];
-        foreach ($data as $d) {
-            $out[] = ['value' => $d['name']];
-        }
-        echo Json::encode($out);
     }
 }

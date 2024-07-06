@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var app\models\Units $model */
+/** @var app\models\Transfers $model */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => 'Отделения', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Выдача', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="units-view">
+<div class="transfers-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -31,6 +31,15 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'name',
+            'comment',
+            'inventory_number',
+            'serial_number',
+            'count',
+            'date',
+            'unit_id',
+            'ref_table_name',
+            'ref_table_id',
+            'user_id',
         ],
     ]) ?>
 

@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-class RepairController extends \yii\web\Controller
+class RepairsController extends \yii\web\Controller
 {
     public function actionIndex()
     {

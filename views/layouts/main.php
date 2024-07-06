@@ -24,6 +24,7 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
 <html lang="<?= Yii::$app->language ?>" class="h-100">
 <head>
     <title><?= Html::encode($this->title) ?></title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css">
     <?php $this->head() ?>
 </head>
 <body class="d-flex flex-column h-100">
@@ -43,8 +44,8 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         ['label' => 'Отчеты', 'url' => ['/reports/index']],
         ['label' => 'Справочники','items' => [
                 ['label' => 'Вся техника (raw)', 'url' => ['/raw-technics/index']],
-                ['label' => 'Техника на выдачу (расходники)', 'url' => ['/site/index2']],
-                ['label' => 'Техника на выдачу', 'url' => ['/site/index2']],
+                ['label' => 'Расходники на выдачу', 'url' => ['/materials/index']],
+                ['label' => 'Техника на выдачу', 'url' => ['/technics/index']],
                 ['label' => 'Виды техники', 'url' => ['/site/index2']],
                 ['label' => 'Отделения', 'url' => ['/units/index']],
                 ['label' => 'МОЛ', 'url' => ['/mol/index']],

@@ -44,8 +44,8 @@ class Mol extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
-            'unit_id' => 'Unit ID',
+            'name' => 'Имя',
+            'unit_id' => 'Отделение',
         ];
     }
 

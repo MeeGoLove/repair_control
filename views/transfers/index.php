@@ -1,6 +1,6 @@
 <?php
 
-use app\models\Units;
+use app\models\Transfers;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
@@ -9,10 +9,10 @@ use yii\widgets\Pjax;
 /** @var yii\web\View $this */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Отделения';
+$this->title = 'Выдача';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="units-index">
+<div class="transfers-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
@@ -27,11 +27,20 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
+            'comment',
+            'inventory_number',
+            'serial_number',
+            'count',
+            'date',
+            'unit_id',
+            //'ref_table_name',
+            //'ref_table_id',
+            'user_id',
             [
                 'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Units $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Transfers $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  }
             ],
