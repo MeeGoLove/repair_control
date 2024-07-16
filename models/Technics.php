@@ -35,7 +35,7 @@ class Technics extends \yii\db\ActiveRecord
         return [
             [['name', 'date_add'], 'required'],
             [['date_accounting', 'invent_card', 'count', 'date_add'], 'integer'],
-            [['name', 'inventory_number', 'serial_number', 'alternative_names'], 'string', 'max' => 255],
+            [['name', 'inventory_number', 'serial_number', 'alternative_names'], 'string'],
         ];
     }
 

@@ -3,12 +3,10 @@
 namespace app\controllers;
 
 use app\models\RawTechnics;
-use yii\data\ActiveDataProvider;
+use app\models\RawTechnicsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\helpers\Json;
 use yii\filters\VerbFilter;
-use yii\db\Query;
 
 /**
  * RawTechnicsController implements the CRUD actions for RawTechnics model.
@@ -40,21 +38,11 @@ class RawTechnicsController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => RawTechnics::find(),
-            /*
-            'pagination' => [
-                'pageSize' => 50
-            ],
-            'sort' => [
-                'defaultOrder' => [
-                    'id' => SORT_DESC,
-                ]
-            ],
-            */
-        ]);
+        $searchModel = new RawTechnicsSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
@@ -142,43 +130,5 @@ class RawTechnicsController extends Controller
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-
-    /**
-     * Your controller action to fetch the list
-     */
-    public function actionInventoryNumberList($q = null) {
-        $query = new Query;
-
-        $query->select('name')
-            ->from('raw_technics')
-            ->where('inventory_number LIKE "%' . $q .'%"')
-            ->orderBy('name');
-        $command = $query->createCommand();
-        $data = $command->queryAll();
-        $out = [];
-        foreach ($data as $d) {
-            $out[] = ['value' => $d['name']];
-        }
-        echo Json::encode($out);
-    }
-
-    /**
-     * Your controller action to fetch the list
-     */
-    public function actionSerialNumberList($q = null) {
-        $query = new Query;
-
-        $query->select('name')
-            ->from('raw_technics')
-            ->where('serial_number LIKE "%' . $q .'%"')
-            ->orderBy('name');
-        $command = $query->createCommand();
-        $data = $command->queryAll();
-        $out = [];
-        foreach ($data as $d) {
-            $out[] = ['value' => $d['name']];
-        }
-        echo Json::encode($out);
     }
 }

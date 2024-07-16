@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 
-$this->title = "Импорт из Radmin"
+$this->title = "Импорт RAW-техники"
 ?>
 <div class="raw-import-form">
     <h1>Привет!</h1>

@@ -16,13 +16,9 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date_accounting')->textInput() ?>
 
-    <?= $form->field($model, 'date_manufacture')->textInput() ?>
-
     <?= $form->field($model, 'inventory_number')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'invent_card')->textInput() ?>
-
-    <?= $form->field($model, 'serial_number')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'mol_id')->textInput() ?>
 

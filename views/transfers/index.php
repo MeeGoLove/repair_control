@@ -7,9 +7,10 @@ use yii\grid\ActionColumn;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /** @var yii\web\View $this */
+/** @var app\models\TransfersSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Выдача';
+$this->title = 'Выдачи';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="transfers-index">
@@ -17,13 +18,19 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Создать', ['create'], ['class' => 'btn btn-success']) ?>
+        Для оформления выдачи перейдите на страничку <?= Html::a('техники на выдачу', ['/technics'])?> либо на страничку <?= Html::a('расходных материалов', ['/materials'])?> и выберите (найдите) нужную позицию и нажмите на кнопку "Выдать"
+    <p>
+        Для оформления выдачи техники не со склада АСУ перейдите на страничку <?= Html::a('Вся техника (RAW)', ['/raw-technics'])?> либо на страничку расходных материалов и выберите (найдите) нужную позицию и нажмите на кнопку "Выдать"
+    </p>
+        <?php # Html::a('Создать (не нажимать! не работает!)', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 
     <?php Pjax::begin(); ?>
+    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 

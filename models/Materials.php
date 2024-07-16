@@ -31,7 +31,7 @@ class Materials extends \yii\db\ActiveRecord
         return [
             [['name', 'count', 'date_add'], 'required'],
             [['count', 'date_add'], 'integer'],
-            //[['name', 'alternative_names'], 'string', 'max' => 255],
+            [['name', 'alternative_names'], 'string'],
         ];
     }
 
