@@ -1,11 +1,12 @@
 <?php
 
 use app\models\Materials;
-use yii\helpers\Html;
-use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\Pjax;
+
 /** @var yii\web\View $this */
 /** @var app\models\MaterialsSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
@@ -39,9 +40,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Materials $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 },
-                'headerOptions' => ['style' => 'width:150px']
-            ],
+                },
+                'headerOptions' => ['style' => 'width:180px'],
+                'template' => '{transfer}',
+                'buttons' => [
+                    'format' => 'raw',
+                    'transfer' =>
+                        function ($url, $model, $key) {
+                            $name = $model->name;
+                            return  Html::a('Оформить выдачу',
+                                ['transfers/create-from', 'id' => $model->id, 'refTable' => 'materials'], [
+                                'class' => 'btn btn-success',
+                                'title' => 'Оформить выдачу',
+                                'data' => [
+                                    'method' => 'post',
+                                ],
+                            ]);
+                        }]]
         ],
     ]); ?>
 

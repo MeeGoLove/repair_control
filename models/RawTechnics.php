@@ -37,8 +37,8 @@ class RawTechnics extends \yii\db\ActiveRecord
     {
         return [
             [['name', 'date_accounting', 'inventory_number'], 'required'],
-            [['date_accounting', 'invent_card', 'mol_id', 'unit_id'], 'integer'],
-            //[['name', 'inventory_number', 'serial_number'], 'string', 'max' => 255],
+            [['date_accounting', 'date_manufacture', 'invent_card', 'mol_id', 'unit_id'], 'integer'],
+            [['name', 'inventory_number', 'serial_number'], 'string', 'max' => 255],
             [['mol_id'], 'exist', 'skipOnError' => true, 'targetClass' => Mol::class, 'targetAttribute' => ['mol_id' => 'id']],
             [['unit_id'], 'exist', 'skipOnError' => true, 'targetClass' => Units::class, 'targetAttribute' => ['unit_id' => 'id']],
         ];

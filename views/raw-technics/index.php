@@ -44,9 +44,36 @@ $this->params['breadcrumbs'][] = $this->title;
                 'urlCreator' => function ($action, RawTechnics $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                  },
-                'headerOptions' => ['style' => 'width:150px']
+                'headerOptions' => ['style' => 'width:180px'],
+                'template' => '{transfer} <p></p>{to-repair}',
+                'buttons' => [
+                    'format' => 'raw',
+                    'transfer' =>
+                        function ($url, $model, $key) {
+                            $name = $model->name;
+                            return  Html::a('Оформить выдачу',
+                                ['transfers/create-from', 'id' => $model->id, 'refTable' => 'raw_technics'], [
+                                    'class' => 'btn btn-success',
+                                    'title' => 'Оформить выдачу',
+                                    'data' => [
+                                        'method' => 'post',
+                                    ],
+                                ]);
+                        },
+                    'to-repair' =>
+                        function ($url, $model, $key) {
+                            $name = $model->name;
+                            return  Html::a('Отдать в ремонт',
+                                ['repairs/create-from', 'id' => $model->id, 'refTable' => 'raw_technics'], [
+                                    'class' => 'btn btn-danger',
+                                    'title' => 'Отдать в ремонт',
+                                    'data' => [
+                                        'method' => 'post',
+                                    ],
+                                ]);
+                        }
+                    ]],
 
-            ],
         ],
     ]); ?>
 

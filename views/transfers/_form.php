@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
 
 /** @var yii\web\View $this */
 /** @var app\models\Transfers $model */
@@ -24,9 +25,24 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'date')->textInput() ?>
 
-    <?= $form->field($model, 'unit_id')->textInput() ?>
+    <?php
+    $unitsModel = \app\models\Units::find()->asArray()->all();
+    $units = ArrayHelper::map($unitsModel,'id', 'name');
+    ?>
 
-    <?= $form->field($model, 'ref_table_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'unit_id')->dropDownList($units, ) ?>
+
+    <?php
+        $tables = ArrayHelper::map([
+                ['id' => 'technics','name' => 'Техника на выдачу'],
+
+                ['id' => 'materials','name' => 'Расходные материалы'],
+
+                ['id' => 'raw_technics','name' => 'RAW техника']]
+        , 'id', 'name' );
+    ?>
+
+    <?= $form->field($model, 'ref_table_name')->dropDownList($tables,) ?>
 
     <?= $form->field($model, 'ref_table_id')->textInput() ?>
 

@@ -45,8 +45,23 @@ $this->params['breadcrumbs'][] = $this->title;
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Technics $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
-                 }
-            ],
+                 },
+                'headerOptions' => ['style' => 'width:180px'],
+                'template' => '{transfer}',
+                'buttons' => [
+                    'format' => 'raw',
+                    'transfer' =>
+                        function ($url, $model, $key) {
+                            $name = $model->name;
+                            return  Html::a('Оформить выдачу',
+                                ['transfers/create-from', 'id' => $model->id, 'refTable' => 'technics'], [
+                                    'class' => 'btn btn-success',
+                                    'title' => 'Оформить выдачу',
+                                    'data' => [
+                                        'method' => 'post',
+                                    ],
+                                ]);
+                        }]]
         ],
     ]); ?>
 
